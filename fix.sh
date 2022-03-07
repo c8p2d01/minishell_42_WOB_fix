@@ -17,34 +17,34 @@ echo 'export PATH=$HOME/goinfre/.brew/bin:$PATH' >> $HOME/goinfre/.zshrc
 
 source $HOME/goinfre/.zshrc && brew update
 
-brew install glfw
+brew install readline
 
 # replaces in readline.h
 
-sed -i 's/#  include <readline/rlstdc.h>/#  include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/rlstdc.h>' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h>
-sed -i 's/#  include <readline/rltypedefs.h>/#  include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/rltypedefs.h>' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h>
-sed -i 's/#  include <readline/keymaps.h>/#  include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/keymaps.h>' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h>
-sed -i 's/#  include <readline/tilde.h>/#  include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/tilde.h>' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h>
+sed -i '' -e 'sP\#  include <readline/rlstdc.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h
+sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rltypedefs.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h
+sed -i '' -e 'sP\#  include <readline/keymaps.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/keymaps.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h
+sed -i '' -e 'sP\#  include <readline/tilde.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/tilde.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h
 
 # replaces in keymaps.h
 
-sed -i 's/#  include <readline/rlstdc.h>/#  include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/rlstdc.h>' /Users/$USER/goinfre/.brew/opt/readline/include/readline/keymaps.h>
-sed -i 's/#  include <readline/chardefs.h>/#  include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/chardefs.h>' /Users/$USER/goinfre/.brew/opt/readline/include/readline/keymaps.h>
-sed -i 's/#  include <readline/rltypedefs.h>/#  include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/rlstdc.h>' /Users/$USER/goinfre/.brew/opt/readline/include/readline/keymaps.h>
+sed -i '' -e 'sP\#  include <readline/rlstdc.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/keymaps.h
+sed -i '' -e 'sP\#  include <readline/chardefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/chardefs.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/keymaps.h
+sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/keymaps.h
 
 # replaces in history.h
 
-sed -i 's/#  include <readline/rlstdc.h>/#  include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/rlstdc.h>' /Users/$USER/goinfre/.brew/opt/readline/include/readline/history.h>
-sed -i 's/#  include <readline/rltypedefs.h>/#  include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/rltypedefs.h>' /Users/$USER/goinfre/.brew/opt/readline/include/readline/history.h>
+sed -i '' -e 'sP\#  include <readline/rlstdc.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/history.h
+sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rltypedefs.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/history.h
 
 ## CHANGES IN COMPILATION
 
 # header file replacements
 
-sed -i 's/# include <readline/readline.h>/# include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/readline.h>' $PDW/minishell.h
-sed -i 's/# include <readline/history.h>/# include </Users/cdahlhof/goinfre/.brew/opt/readline/include/readline/history.h>' $PDW/minishell.h
+sed -i '' -e 'sP\# include <readline/readline.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/readline.h>Pg' $PWD/minishell.h
+sed -i '' -e 'sP\# include <readline/history.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/history.h>Pg' $PWD/minishell.h
 
 #for compiling use the include flag and the library path flag
 
--I /Users/$USER/goinfre/.brew/opt/readline/include/ 		-L /Users/$USER/goinfre/.brew/opt/readline/lib/ -lreadline 
+#-I $(HOME)/goinfre/.brew/opt/readline/include/ 		-L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline 
 
