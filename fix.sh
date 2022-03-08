@@ -44,7 +44,8 @@ sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/g
 sed -i '' -e 'sP\# include <readline/readline.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/readline.h>Pg' $PWD/minishell.h
 sed -i '' -e 'sP\# include <readline/history.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/history.h>Pg' $PWD/minishell.h
 
-#for compiling use the include flag and the library path flag
+# IN MAKEFILE
+# for compiling use the include flag and the library path flag
 
-#-I $(HOME)/goinfre/.brew/opt/readline/include/ 		-L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline 
+#-I $(HOME)/goinfre/.brew/opt/readline/include/ -L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline
 
