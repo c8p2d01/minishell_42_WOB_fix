@@ -9,33 +9,36 @@
 # My current work around for this is to reinstall Homebrew on the local storage of the computer and change the include files in the
 # compilation later.
 
-rm -rf $HOME/goinfre/.brew
 
-git clone --depth=1 https://github.com/Homebrew/brew $HOME/goinfre/.brew
+if ! [ -r $HOME/goinfre/.brew/Cellar/readline ]; then
+	rm -rf $HOME/goinfre/.brew
 
-echo 'export PATH=$HOME/goinfre/.brew/bin:$PATH' >> $HOME/goinfre/.zshrc
+	git clone --depth=1 https://github.com/Homebrew/brew $HOME/goinfre/.brew
 
-source $HOME/goinfre/.zshrc && brew update
+	echo 'export PATH=$HOME/goinfre/.brew/bin:$PATH' >> $HOME/goinfre/.zshrc
 
-brew install readline
+	source $HOME/goinfre/.zshrc && brew update
+
+	brew install readline
+fi
 
 # replaces in readline.h
 
-sed -i '' -e 'sP\#  include <readline/rlstdc.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h
-sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rltypedefs.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h
-sed -i '' -e 'sP\#  include <readline/keymaps.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/keymaps.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h
-sed -i '' -e 'sP\#  include <readline/tilde.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/tilde.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/readline.h
+sed -i '' -e 'sP\#  include <readline/rlstdc.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' $HOME/goinfre/.brew/opt/readline/include/readline/readline.h
+sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rltypedefs.h>Pg' $HOME/goinfre/.brew/opt/readline/include/readline/readline.h
+sed -i '' -e 'sP\#  include <readline/keymaps.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/keymaps.h>Pg' $HOME/goinfre/.brew/opt/readline/include/readline/readline.h
+sed -i '' -e 'sP\#  include <readline/tilde.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/tilde.h>Pg' $HOME/goinfre/.brew/opt/readline/include/readline/readline.h
 
 # replaces in keymaps.h
 
-sed -i '' -e 'sP\#  include <readline/rlstdc.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/keymaps.h
-sed -i '' -e 'sP\#  include <readline/chardefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/chardefs.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/keymaps.h
-sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/keymaps.h
+sed -i '' -e 'sP\#  include <readline/rlstdc.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' $HOME/goinfre/.brew/opt/readline/include/readline/keymaps.h
+sed -i '' -e 'sP\#  include <readline/chardefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/chardefs.h>Pg' $HOME/goinfre/.brew/opt/readline/include/readline/keymaps.h
+sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' $HOME/goinfre/.brew/opt/readline/include/readline/keymaps.h
 
 # replaces in history.h
 
-sed -i '' -e 'sP\#  include <readline/rlstdc.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/history.h
-sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rltypedefs.h>Pg' /Users/$USER/goinfre/.brew/opt/readline/include/readline/history.h
+sed -i '' -e 'sP\#  include <readline/rlstdc.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rlstdc.h>Pg' $HOME/goinfre/.brew/opt/readline/include/readline/history.h
+sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/rltypedefs.h>Pg' $HOME/goinfre/.brew/opt/readline/include/readline/history.h
 
 ## CHANGES IN COMPILATION
 
@@ -48,4 +51,3 @@ sed -i '' -e 'sP\# include <readline/history.h>P# include </Users/'$USER'/goinfr
 # for compiling use the include flag and the library path flag
 
 #-I $(HOME)/goinfre/.brew/opt/readline/include/ -L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline
-
