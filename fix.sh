@@ -15,7 +15,7 @@ if ! [ -r $HOME/goinfre/.brew/Cellar/readline ]; then
 
 	git clone --depth=1 https://github.com/Homebrew/brew $HOME/goinfre/.brew
 
-	echo 'export PATH=$HOME/goinfre/.brew/bin:$PATH' >> $HOME/goinfre/.zshrc
+	echo 'export PATH=$HOME/goinfre/.brew/bin:$PATH' >> $HOME/.zshrc
 
 	source $HOME/goinfre/.zshrc && brew update
 
@@ -44,8 +44,8 @@ sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/g
 
 # header file replacements
 
-sed -i '' -e 'sP\# include <readline/readline.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/readline.h>Pg' $PWD/minishell.h
-sed -i '' -e 'sP\# include <readline/history.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/history.h>Pg' $PWD/minishell.h
+# sed -i '' -e 'sP\# include <readline/readline.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/readline.h>Pg' $PWD/minishell.h
+# sed -i '' -e 'sP\# include <readline/history.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/history.h>Pg' $PWD/minishell.h
 
 # IN MAKEFILE
 # for compiling use the include flag and the library path flag
