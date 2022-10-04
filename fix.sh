@@ -17,7 +17,7 @@ if ! [ -r $HOME/goinfre/.brew/Cellar/readline ]; then
 
 	echo 'export PATH=$HOME/goinfre/.brew/bin:$PATH' >> $HOME/.zshrc
 
-	source $HOME/goinfre/.zshrc && brew update
+	source $HOME/.zshrc && brew update
 
 	brew install readline
 fi
@@ -44,10 +44,14 @@ sed -i '' -e 'sP\#  include <readline/rltypedefs.h>P#  include </Users/'$USER'/g
 
 # header file replacements
 
+# use in case you need to direct include the library you just installed; this then only works on the current local computer or any in its subnet
+
 # sed -i '' -e 'sP\# include <readline/readline.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/readline.h>Pg' $PWD/minishell.h
 # sed -i '' -e 'sP\# include <readline/history.h>P# include </Users/'$USER'/goinfre/.brew/opt/readline/include/readline/history.h>Pg' $PWD/minishell.h
 
 # IN MAKEFILE
 # for compiling use the include flag and the library path flag
+
+echo 'changes in Makefile still required: compile with "-I $(HOME)/goinfre/.brew/opt/readline/include/ -L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline"'
 
 #-I $(HOME)/goinfre/.brew/opt/readline/include/ -L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline
